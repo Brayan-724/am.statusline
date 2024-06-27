@@ -1,0 +1,14 @@
+AM-Statusline-context-sides	am.txt	/*AM-Statusline-context-sides*
+AM-Statusline-plugin-specification	am.txt	/*AM-Statusline-plugin-specification*
+AMStatusline	am.txt	/*AMStatusline*
+AMStatusline.config	am.txt	/*AMStatusline.config*
+AMStatusline.create_mode_highlights()	am.txt	/*AMStatusline.create_mode_highlights()*
+AMStatusline.setup()	am.txt	/*AMStatusline.setup()*
+am.statusline	am.txt	/*am.statusline*
+base.component()	am.txt	/*base.component()*
+base.resolve()	am.txt	/*base.resolve()*
+base.resolve_render()	am.txt	/*base.resolve_render()*
+base.scoped_opts()	am.txt	/*base.scoped_opts()*
+theme.create_cell()	am.txt	/*theme.create_cell()*
+theme.set_highlights()	am.txt	/*theme.set_highlights()*
+theme.set_theme()	am.txt	/*theme.set_theme()*

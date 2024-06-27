@@ -1,0 +1,222 @@
+==============================================================================
+------------------------------------------------------------------------------
+*am.statusline* Plugin manager
+*AMStatusline*
+
+MIT License Copyright (c) 2024 Apika Luca
+
+==============================================================================
+
+------------------------------------------------------------------------------
+                                            *AM-Statusline-plugin-specification*
+Plugin Specification ~
+Class ~
+{ModeHighlights}
+Fields ~
+{Command} `(string)`
+{Confirm} `(string)`
+{ConfirmMore} `(string)`
+{ConfirmAsk} `(string)`
+{Insert} `(string)`
+{Normal} `(string)`
+{NTerminal} `(string)`
+{Replace} `(string)`
+{Select} `(string)`
+{Terminal} `(string)`
+{Visual} `(string)`
+
+Class ~
+{StatuslineContext}
+{mode} `(string)`
+{level} `(number)`
+{side} ContextSide
+
+------------------------------------------------------------------------------
+                                                           *AMStatusline.config*
+                             `AMStatusline.config`
+Module Config
+
+Default values:
+>
+  AMStatusline.config = {
+  	transparent = true,
+
+  	---@type string|table
+  	theme = "apika",
+
+  	colors = {
+  		Command = { fg = "" },
+  	},
+
+  	separators = { left = "", right = "" },
+
+  	icons = {
+  		Command = "",
+  		Confirm = "󰛔",
+  		ConfirmMore = "MORE",
+  		ConfirmAsk = "",
+  		Insert = "󰏫",
+  		Normal = "󰋜",
+  		NTerminal = "",
+  		Replace = "",
+  		Select = "󰏫",
+  		Terminal = "",
+  		Visual = "󰈈",
+  	},
+
+  	gap = 1,
+  	sections = {
+  		left = {
+  			ui_apika.mode({
+  				icon = false,
+  			}),
+  			ui_apika.filename(),
+  			ui_apika.git({ transparent = true }),
+  		},
+  		center = {
+        ui.text("Apika Luca")()
+      },
+  		right = {
+  			ui_apika.cursor_position(),
+  			ui_apika.cwd(),
+  			ui_apika.lsp_server(),
+  			ui_apika.lsp_diagnostics({ transparent = true }),
+  		},
+  	},
+  }
+
+<
+Class ~
+{ModuleConfig}
+
+------------------------------------------------------------------------------
+                                         *AMStatusline.create_mode_highlights()*
+           `AMStatusline.create_mode_highlights`({prefix}, {suffix})
+Create a table with all
+Parameters ~
+{prefix} `(optional)` `(string)`
+{suffix} `(optional)` `(string)`
+Return ~
+ModeHighlights highlights_maps
+
+------------------------------------------------------------------------------
+                                                          *AMStatusline.setup()*
+                          `AMStatusline.setup`({opts})
+Parameters ~
+{opts} ModuleConfig
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                   *AM-Statusline-context-sides*
+                                  `base.SIDES`
+Possible sides for component position
+Values:
+>lua
+ AMStatusline,SIDES = {
+	 Left = 0,
+ 	 Center = 1,
+	 Right = 2,
+ }
+<
+
+ContextSide
+
+------------------------------------------------------------------------------
+                                                         *base.resolve_render()*
+                       `base.resolve_render`({component})
+component just for render purposes
+Parameters ~
+{component} `(string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent<string?>?
+Return ~
+`(fun(ctx: StatuslineContext): string?)`
+<string>
+
+------------------------------------------------------------------------------
+                                                                *base.resolve()*
+                  `base.resolve`({component}, {config}, {ctx})
+component just for render purposes
+Parameters ~
+{component} `(optional)` `(string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent
+{config} ModuleConfig
+{ctx} StatuslineContext
+Return ~
+`(fun(ctx: StatuslineContext): string?)`
+
+
+------------------------------------------------------------------------------
+                                                            *base.scoped_opts()*
+                     `base.scoped_opts`({opts}, {defaults})
+T
+Parameters ~
+{opts} T?
+{defaults} T?
+Return ~
+T
+
+------------------------------------------------------------------------------
+                                                              *base.component()*
+                   `base.component`({on_start}, {on_render})
+OPTS
+T
+Parameters ~
+{on_start} `(fun(opts: OPTS, config: ModuleConfig, ctx: StatuslineContext): T)`
+{on_render} `(fun(opts: T, ctx: StatuslineContext, config: ModuleConfig): string?)`
+Return ~
+`(fun(opts: OPTS, ...: string|fun(config: ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent[]): string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent<string?>
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                        *theme.set_highlights()*
+                          `theme.set_highlights`({hl})
+Set nvim highlights
+
+Parameters ~
+{hl} `(table<string, table>)`
+
+Usage ~
+>lua
+ theme.set_highlights({
+   CustomHighlight = { fg = "white", bg = "black", bold = true }
+ })
+>
+
+------------------------------------------------------------------------------
+                                                           *theme.create_cell()*
+              `theme.create_cell`({name}, {accent}, {base}, {bg})
+Parameters ~
+{name} `(string)`
+{accent} `(string)`
+{base} `(string)`
+{bg} `(string)`
+Return ~
+`(table)`
+
+------------------------------------------------------------------------------
+                                                             *theme.set_theme()*
+                           `theme.set_theme`({spec})
+Parameters ~
+{spec} `(string|table)`
+
+
+==============================================================================
+------------------------------------------------------------------------------
+Class ~
+{StatuslineUICell}
+Fields ~
+{icon} `(optional)` `(string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent<string?>
+{txt} `(string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent<string?>
+{sep_left} `(string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent<string?>
+{sep_right} `(string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent<string?>
+
+------------------------------------------------------------------------------
+Class ~
+{StatuslineUISolidCell}
+Fields ~
+{txt} `(string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent<string?>
+{sep_left} `(string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent<string?>
+{sep_right} `(string|fun(config:)` ModuleConfig, ctx: StatuslineContext): StatuslineResolvedComponent<string?>
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
