@@ -89,7 +89,7 @@ function base.stbufnr()
 end
 
 function base.filename()
-	local path = vim.api.nvim_buf_get_name(base.stbufnr())
+	local path = vim.api.nvim_buf_get_name(0)
 	local name = (path == "" and "Empty") or path:match("([^/\\]+)[/\\]*$")
 
 	return name
