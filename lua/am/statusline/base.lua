@@ -85,11 +85,11 @@ function base.mode_norm()
 end
 
 function base.stbufnr()
-	return vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+	return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
 end
 
 function base.filename()
-	local path = vim.api.nvim_buf_get_name(0)
+	local path = vim.api.nvim_buf_get_name(base.stbufnr())
 	local name = (path == "" and "Empty") or path:match("([^/\\]+)[/\\]*$")
 
 	return name
