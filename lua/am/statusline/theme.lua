@@ -98,6 +98,7 @@ function theme.set_theme(spec)
 	end
 
 	theme.set_highlights({
+		Statusline = spec.empty,
 		StatuslineEmpty = spec.empty,
 	})
 
@@ -144,10 +145,10 @@ local apika_colors = {
 }
 
 theme.apika = {
-	empty = { fg = "none", bg = "none" },
+	empty = { fg = "NONE", bg = "NONE" },
 
 	mode = {
-		bg = "none",
+		bg = "NONE",
 		fg = apika_colors["black"],
 
 		Confirm = apika_colors["teal"],
@@ -174,17 +175,17 @@ theme.apika = {
 		{
 			accent = apika_colors["yellow"],
 			base = apika_colors["black"],
-			bg = "none",
+			bg = "NONE",
 		},
 		{
 			accent = apika_colors["red"],
 			base = apika_colors["black"],
-			bg = "none",
+			bg = "NONE",
 		},
 		{
 			accent = apika_colors["green"],
 			base = apika_colors["black"],
-			bg = "none",
+			bg = "NONE",
 		},
 	},
 }

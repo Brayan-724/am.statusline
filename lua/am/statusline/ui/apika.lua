@@ -193,7 +193,7 @@ ui_apika.lsp_server = ui_apika.cell_component({
 			return
 		end
 
-		for _, client in ipairs(vim.lsp.get_active_clients()) do
+		for _, client in ipairs(vim.lsp.get_clients()) do
 			if client.attached_buffers[base.stbufnr()] and client.name ~= "null-ls" then
 				if vim.o.columns <= 100 then
 					return "", "LSP"
